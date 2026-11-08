@@ -50,3 +50,4 @@ chmod +x ./examples/cli_workflow.sh
 ```bash
 python examples/mcp_client_example.py
 ```
+

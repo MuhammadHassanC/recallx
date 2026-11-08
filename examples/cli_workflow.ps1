@@ -1,4 +1,4 @@
-﻿# Example: End-to-end RecallX CLI Workflow (PowerShell)
+# Example: End-to-end RecallX CLI Workflow (PowerShell)
 # Demonstrates initializing, recording architectural decisions, searching with BM25,
 # managing project context, exporting, and backups.
 
@@ -53,3 +53,4 @@ if (Test-Path fintech_backup.json) {
 }
 
 Write-Host "`n[✓] Workflow demonstration completed successfully!" -ForegroundColor Green
+
