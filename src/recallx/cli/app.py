@@ -648,7 +648,6 @@ def export_cmd(
 # Command: import-memories / import
 # ----------------------------------------------------------------------
 @app.command("import")
-@app.command("import-memories")
 def import_cmd(
     ctx: typer.Context,
     file: Path = typer.Argument(
@@ -686,6 +685,28 @@ def import_cmd(
         logger.exception("Error importing memories from %s: %s", file, exc)
         formatter.error(f"Import failed: {exc}")
         raise typer.Exit(code=1)
+
+
+@app.command("import-memories", hidden=True)
+def import_memories_alias(
+    ctx: typer.Context,
+    file: Path = typer.Argument(
+        ...,
+        help="Path to JSON file containing memories to import.",
+        exists=True,
+        file_okay=True,
+        dir_okay=False,
+        readable=True,
+    ),
+    project: Optional[str] = typer.Option(
+        None,
+        "--project",
+        "-p",
+        help="Project override for imported memories.",
+    ),
+) -> None:
+    """Alias for 'recallx import' command."""
+    import_cmd(ctx=ctx, file=file, project=project)
 
 
 # ----------------------------------------------------------------------

@@ -1,0 +1,121 @@
+{
+  "version": "1.0.0",
+  "exported_at": "2026-11-08T12:00:00+00:00",
+  "project_id": "cloud-saas",
+  "count": 6,
+  "memories": [
+    {
+      "id": "a1b2c3d4e5f6",
+      "project_id": "cloud-saas",
+      "memory_type": "project",
+      "content": "Architecture: Monorepo with FastAPI backend in apps/api and Next.js 14 frontend in apps/web. Turborepo handles build caching and workspace execution.",
+      "tags": ["monorepo", "architecture", "fastapi", "nextjs"],
+      "importance": 0.9,
+      "confidence": 1.0,
+      "is_pinned": true,
+      "is_archived": false,
+      "source": "manual",
+      "created_at": "2026-10-15T09:00:00+00:00",
+      "updated_at": "2026-10-15T09:00:00+00:00",
+      "accessed_at": "2026-11-08T10:00:00+00:00",
+      "metadata": {
+        "verified_by": "lead_architect"
+      }
+    },
+    {
+      "id": "b2c3d4e5f6a1",
+      "project_id": "cloud-saas",
+      "memory_type": "decision",
+      "content": "Adopted Redis for rate limiting using a token bucket algorithm rather than in-memory storage. This allows rate limit state to survive worker process restarts across horizontal scaling.",
+      "tags": ["redis", "rate-limiting", "architecture", "scaling"],
+      "importance": 0.85,
+      "confidence": 0.95,
+      "is_pinned": false,
+      "is_archived": false,
+      "source": "claude-code",
+      "created_at": "2026-10-20T14:30:00+00:00",
+      "updated_at": "2026-10-20T14:30:00+00:00",
+      "accessed_at": "2026-11-05T16:12:00+00:00",
+      "metadata": {
+        "rationale": "Horizontal multi-worker concurrency"
+      }
+    },
+    {
+      "id": "c3d4e5f6a1b2",
+      "project_id": "cloud-saas",
+      "memory_type": "decision",
+      "content": "Using Pydantic v2 BaseSettings for centralized environment configuration. All database, Redis, and auth secrets are injected through strongly typed models with validation on startup.",
+      "tags": ["pydantic", "config", "validation", "security"],
+      "importance": 0.8,
+      "confidence": 0.9,
+      "is_pinned": true,
+      "is_archived": false,
+      "source": "cursor",
+      "created_at": "2026-10-22T11:15:00+00:00",
+      "updated_at": "2026-10-22T11:15:00+00:00",
+      "accessed_at": "2026-11-07T14:20:00+00:00",
+      "metadata": {}
+    },
+    {
+      "id": "d4e5f6a1b2c3",
+      "project_id": "cloud-saas",
+      "memory_type": "bug_solution",
+      "content": "Resolved JWT validation failure 'Signature verification failed' on token refresh. Root cause: The refresh token rotation handler used the old access token signing key instead of the refresh secret. Fix: Configured distinct JWT_SECRET_KEY and JWT_REFRESH_SECRET_KEY in AuthConfig.",
+      "tags": ["jwt", "auth", "tokens", "security", "bugfix"],
+      "importance": 0.9,
+      "confidence": 1.0,
+      "is_pinned": false,
+      "is_archived": false,
+      "source": "cli",
+      "created_at": "2026-10-28T18:45:00+00:00",
+      "updated_at": "2026-10-28T18:45:00+00:00",
+      "accessed_at": "2026-11-06T09:30:00+00:00",
+      "metadata": {
+        "files_changed": ["apps/api/src/auth/service.py"]
+      }
+    },
+    {
+      "id": "e5f6a1b2c3d4",
+      "project_id": "cloud-saas",
+      "memory_type": "preference",
+      "content": "Coding convention: In Python services, never raise raw HTTPException directly inside repository or service layers. Raise custom domain exceptions (e.g. EntityNotFoundError) and let the FastAPI exception handler translate them to status codes.",
+      "tags": ["python", "architecture", "error-handling", "standards"],
+      "importance": 0.75,
+      "confidence": 0.9,
+      "is_pinned": false,
+      "is_archived": false,
+      "source": "manual",
+      "created_at": "2026-11-01T10:00:00+00:00",
+      "updated_at": "2026-11-01T10:00:00+00:00",
+      "accessed_at": "2026-11-04T12:00:00+00:00",
+      "metadata": {}
+    },
+    {
+      "id": "f6a1b2c3d4e5",
+      "project_id": "cloud-saas",
+      "memory_type": "session",
+      "content": "Completed Stripe Customer Portal integration and webhook replay testing. Pending: invoice PDF generation endpoint and VAT calculation tests.",
+      "tags": ["stripe", "billing", "session"],
+      "importance": 0.6,
+      "confidence": 0.85,
+      "is_pinned": false,
+      "is_archived": false,
+      "source": "cli",
+      "created_at": "2026-11-07T17:00:00+00:00",
+      "updated_at": "2026-11-07T17:00:00+00:00",
+      "accessed_at": "2026-11-07T17:00:00+00:00",
+      "metadata": {
+        "tasks_completed": [
+          "Customer Portal session endpoint",
+          "Webhook replay testing script"
+        ],
+        "tasks_pending": [
+          "Invoice PDF generation",
+          "VAT calculation tests"
+        ],
+        "issues": []
+      }
+    }
+  ]
+}
+
