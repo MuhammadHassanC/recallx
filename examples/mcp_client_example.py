@@ -9,6 +9,7 @@ from __future__ import annotations
 import asyncio
 import json
 import sys
+from subprocess import PIPE
 
 
 async def run_mcp_client_demo() -> None:
@@ -20,9 +21,9 @@ async def run_mcp_client_demo() -> None:
         "recallx.cli.app",
         "mcp",
         "serve",
-        stdin=asyncio.subprocess.PIPE,
-        stdout=asyncio.subprocess.PIPE,
-        stderr=asyncio.subprocess.PIPE,
+        stdin=PIPE,
+        stdout=PIPE,
+        stderr=PIPE,
     )
 
     print("[*] Connected to RecallX MCP Server via stdio.")
