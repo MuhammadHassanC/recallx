@@ -1,0 +1,11 @@
+---
+description: RecallX persistent memory rules for AI coding sessions
+globs: *
+---
+
+# RecallX Persistent Memory Instructions
+
+When working in this project:
+1. At the beginning of a session or task, call the `recall` or `get_project_context` MCP tool to retrieve previous architecture decisions, conventions, and solved bugs.
+2. After making major technical decisions, solving non-trivial bugs, or when the user states a convention, call the `remember` MCP tool to persist it.
+3. At the end of a session with pending work, call `save_session_summary` to maintain continuity.

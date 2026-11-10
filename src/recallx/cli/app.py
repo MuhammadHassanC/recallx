@@ -866,6 +866,64 @@ def integrate_cmd(
 
 
 # ----------------------------------------------------------------------
+# Command: setup
+# ----------------------------------------------------------------------
+@app.command("setup")
+def setup_cmd(
+    ctx: typer.Context,
+    agent: Optional[str] = typer.Option(
+        None,
+        "--agent",
+        "-a",
+        help="Target agent to configure (e.g. claude-code, cursor, gemini, or all).",
+    ),
+) -> None:
+    """Automatically configure detected AI coding agents with RecallX MCP server and skills."""
+    formatter = _get_formatter(ctx)
+    try:
+        from recallx.integrations.installer import (
+            setup_all_agents,
+            setup_claude_code,
+            setup_cursor,
+            setup_gemini_antigravity,
+        )
+
+        target = agent.lower().strip() if agent else "all"
+        if target in ("claude", "claude-code"):
+            results = [setup_claude_code()]
+        elif target == "cursor":
+            results = [setup_cursor()]
+        elif target in ("gemini", "antigravity"):
+            results = [setup_gemini_antigravity()]
+        else:
+            results = setup_all_agents()
+
+        if formatter.json_mode:
+            formatter.json_output([
+                {
+                    "agent": r.agent_name,
+                    "configured": r.configured,
+                    "config_file": str(r.config_file) if r.config_file else None,
+                    "skills": r.skills_installed,
+                    "message": r.message,
+                }
+                for r in results
+            ])
+            return
+
+        formatter.success("RecallX agent auto-configuration completed.")
+        for res in results:
+            if res.configured:
+                formatter.info(f"{res.agent_name}: {res.message}")
+            else:
+                formatter.warning(f"{res.agent_name}: Skipped / Not detected")
+    except Exception as exc:
+        logger.exception("Error during agent setup: %s", exc)
+        formatter.error(f"Setup failed: {exc}")
+        raise typer.Exit(code=1)
+
+
+# ----------------------------------------------------------------------
 # Project Sub-Commands
 # ----------------------------------------------------------------------
 @project_app.command("init")

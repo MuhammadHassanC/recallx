@@ -6,6 +6,38 @@ Universal local-first persistent memory for AI coding agents. Remember project c
 
 ---
 
+## ⚡ One-Prompt Install (For Any AI Coding Agent)
+
+If you use **Claude Code**, **Cursor**, **Gemini CLI / Antigravity**, **Windsurf**, or **Roo Code**, simply paste this single prompt into your AI coding assistant:
+
+> **"Install RecallX from https://github.com/MuhammadHassanC/recallx and configure my coding assistant."**
+
+### How AI Coding Agents Install RecallX (Automated)
+
+When an AI coding agent is given the repo URL, it executes the automated one-step installer:
+
+```bash
+git clone https://github.com/MuhammadHassanC/recallx.git
+cd recallx
+python install.py
+```
+
+Or via pip:
+
+```bash
+pip install git+https://github.com/MuhammadHassanC/recallx.git
+recallx setup
+```
+
+**What the installer does automatically in seconds:**
+1. Installs the RecallX engine and dependencies.
+2. Initializes the local SQLite persistent database and FTS5 search index (`%LOCALAPPDATA%/RecallX` or `~/.local/share/recallx`).
+3. Auto-detects your coding agent (`Claude Code`, `Cursor`, `Gemini CLI / Antigravity`, `Windsurf`, `Cline / Roo Code`) and configures the RecallX MCP server in their settings files (`~/.claude.json`, `.cursor/mcp.json`, `~/.gemini/settings.json`, etc.).
+4. Copies the Agent Skills (`recallx-remember`, `recallx-recall`, `recallx-project-context`) into your agent's skills directory.
+5. Verifies the connection so your AI agent has persistent memory active immediately.
+
+---
+
 ## The Problem
 
 AI coding agents lose context between sessions. Every new conversation starts from scratch. You repeatedly explain your architecture, preferences, decisions, and previous work. Context is lost, productivity suffers.
@@ -124,6 +156,7 @@ Run `recallx integrate <agent>` for specific setup instructions.
 | Command | Description |
 |---------|-------------|
 | `recallx init` | Initialize RecallX |
+| `recallx setup` | Auto-configure detected AI coding agents and skills |
 | `recallx status` | Show status |
 | `recallx remember <content>` | Save a memory |
 | `recallx search <query>` | Search memories |
