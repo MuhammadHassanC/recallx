@@ -292,3 +292,4 @@ def setup_all_agents(command: str = "recallx") -> list[SetupResult]:
     results.extend(setup_cline_roo(command=command))
 
     return results
+
